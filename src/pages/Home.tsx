@@ -252,97 +252,90 @@ function InteractiveBrowserMockup() {
   }, [])
 
   return (
-    <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg">
-      {/* Floating elements for depth - smaller on mobile */}
-      <div className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 w-8 h-8 lg:w-16 lg:h-16 bg-primary/10 rounded-full blur-xl animate-pulse"></div>
-      <div className="absolute -bottom-3 -left-3 lg:-bottom-6 lg:-left-6 w-10 h-10 lg:w-20 lg:h-20 bg-blue-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
+    <div className="relative w-full" style={{ maxWidth: '500px' }}>
+      {/* Floating elements for depth - aligned to grid */}
+      <div className="absolute bg-primary/10 rounded-full blur-xl animate-pulse" style={{ top: '-25px', right: '-25px', width: '50px', height: '50px' }}></div>
+      <div className="absolute bg-blue-500/10 rounded-full blur-xl animate-pulse delay-1000" style={{ bottom: '-25px', left: '-25px', width: '75px', height: '75px' }}></div>
       
-      {/* Main hero image container */}
-      <div className="relative bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-2xl lg:rounded-3xl p-3 lg:p-6 backdrop-blur-sm border border-primary/20 shadow-2xl">
-        <div className="bg-white rounded-xl lg:rounded-2xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-500 hover:shadow-3xl">
+      {/* Main hero image container - grid aligned dimensions */}
+      <div className="relative bg-gradient-to-br from-primary/20 to-blue-500/20 backdrop-blur-sm border border-primary/20 shadow-2xl" style={{ borderRadius: '25px', padding: '25px' }}>
+        <div className="bg-white shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-500 hover:shadow-3xl" style={{ borderRadius: '15px' }}>
           {/* Mock browser window */}
-          <div className="bg-gray-100 px-3 py-2 lg:px-6 lg:py-4 flex items-center gap-2 lg:gap-3 border-b border-gray-200">
-            <div className="flex items-center gap-1 lg:gap-2">
-              <div className="w-2 h-2 lg:w-3 lg:h-3 bg-red-500 rounded-full hover:bg-red-600 transition-colors cursor-pointer"></div>
-              <div className="w-2 h-2 lg:w-3 lg:h-3 bg-yellow-500 rounded-full hover:bg-yellow-600 transition-colors cursor-pointer"></div>
-              <div className="w-2 h-2 lg:w-3 lg:h-3 bg-green-500 rounded-full hover:bg-green-600 transition-colors cursor-pointer"></div>
+          <div className="bg-gray-100 flex items-center border-b border-gray-200" style={{ padding: '25px', gap: '12.5px' }}>
+            <div className="flex items-center" style={{ gap: '6.25px' }}>
+              <div className="bg-red-500 rounded-full hover:bg-red-600 transition-colors cursor-pointer" style={{ width: '12.5px', height: '12.5px' }}></div>
+              <div className="bg-yellow-500 rounded-full hover:bg-yellow-600 transition-colors cursor-pointer" style={{ width: '12.5px', height: '12.5px' }}></div>
+              <div className="bg-green-500 rounded-full hover:bg-green-600 transition-colors cursor-pointer" style={{ width: '12.5px', height: '12.5px' }}></div>
             </div>
-            <div className="ml-2 lg:ml-4 bg-white rounded-lg px-2 py-1 lg:px-4 lg:py-2 text-xs lg:text-sm text-gray-600 flex-1 shadow-inner border border-gray-200">
+            <div className="bg-white rounded-lg text-gray-600 flex-1 shadow-inner border border-gray-200 text-sm" style={{ marginLeft: '12.5px', padding: '6.25px 12.5px' }}>
               yourwebsite.com
             </div>
-            <div className="w-4 h-4 lg:w-6 lg:h-6 bg-gray-200 rounded"></div>
+            <div className="bg-gray-200 rounded" style={{ width: '25px', height: '25px' }}></div>
           </div>
           
-          {/* Mock website content with horizontal scroll */}
-          <div className="p-4 lg:p-8 bg-gradient-to-br from-white via-gray-50/50 to-primary/5">
-            <div className="space-y-4 lg:space-y-6">
+          {/* Mock website content with grid spacing */}
+          <div className="bg-gradient-to-br from-white via-gray-50/50 to-primary/5" style={{ padding: '50px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
               {/* Header section - Static */}
-              <div className="space-y-2 lg:space-y-3">
-                <div className="h-3 lg:h-5 bg-gradient-to-r from-primary/30 to-blue-500/30 rounded-full w-4/5 shadow-sm"></div>
-                <div className="h-2 lg:h-3 bg-gray-200 rounded-full w-3/5"></div>
-                <div className="h-2 lg:h-3 bg-gray-200 rounded-full w-2/5"></div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12.5px' }}>
+                <div className="bg-gradient-to-r from-primary/30 to-blue-500/30 rounded-full shadow-sm" style={{ height: '25px', width: '80%' }}></div>
+                <div className="bg-gray-200 rounded-full" style={{ height: '12.5px', width: '60%' }}></div>
+                <div className="bg-gray-200 rounded-full" style={{ height: '12.5px', width: '40%' }}></div>
               </div>
               
               {/* CTA Button - Static */}
               <div className="relative">
-                <div className="h-8 lg:h-12 bg-gradient-to-r from-primary to-blue-600 rounded-lg w-32 lg:w-44 flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow">
-                  <span className="text-white text-xs lg:text-sm font-semibold">Get Started →</span>
+                <div className="bg-gradient-to-r from-primary to-blue-600 rounded-lg flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow" style={{ height: '50px', width: '175px' }}>
+                  <span className="text-white text-sm font-semibold">Get Started →</span>
                 </div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-lg blur opacity-20"></div>
+                <div className="absolute bg-gradient-to-r from-primary to-blue-600 rounded-lg blur opacity-20" style={{ inset: '-2px' }}></div>
               </div>
               
-              {/* Feature cards with scrolling - Only this section scrolls */}
-              <div className="mt-4 lg:mt-8 overflow-hidden">
+              {/* Feature cards with scrolling - Grid aligned */}
+              <div className="overflow-hidden">
                 <div 
-                  className="flex gap-2 lg:gap-3 transition-transform duration-300 ease-out"
+                  className="flex transition-transform duration-300 ease-out"
                   style={{ 
+                    gap: '12.5px',
                     transform: `translateX(-${Math.min(scrollOffset, 150)}px)`,
                     width: 'calc(100% + 200px)'
                   }}
                 >
-                  <div className="h-12 lg:h-16 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200/50 p-1.5 lg:p-2 flex-shrink-0 w-16 lg:w-24">
-                    <div className="w-4 h-4 lg:w-6 lg:h-6 bg-blue-500 rounded mb-1"></div>
-                    <div className="h-1 lg:h-1.5 bg-blue-300 rounded w-3/4"></div>
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200/50 flex-shrink-0" style={{ height: '75px', width: '100px', padding: '12.5px' }}>
+                    <div className="bg-blue-500 rounded mb-1" style={{ width: '25px', height: '25px' }}></div>
+                    <div className="bg-blue-300 rounded" style={{ height: '6.25px', width: '75%' }}></div>
                   </div>
-                  <div className="h-12 lg:h-16 bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200/50 p-1.5 lg:p-2 flex-shrink-0 w-16 lg:w-24">
-                    <div className="w-4 h-4 lg:w-6 lg:h-6 bg-green-500 rounded mb-1"></div>
-                    <div className="h-1 lg:h-1.5 bg-green-300 rounded w-3/4"></div>
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200/50 flex-shrink-0" style={{ height: '75px', width: '100px', padding: '12.5px' }}>
+                    <div className="bg-green-500 rounded mb-1" style={{ width: '25px', height: '25px' }}></div>
+                    <div className="bg-green-300 rounded" style={{ height: '6.25px', width: '75%' }}></div>
                   </div>
-                  <div className="h-12 lg:h-16 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-200/50 p-1.5 lg:p-2 flex-shrink-0 w-16 lg:w-24">
-                    <div className="w-4 h-4 lg:w-6 lg:h-6 bg-purple-500 rounded mb-1"></div>
-                    <div className="h-1 lg:h-1.5 bg-purple-300 rounded w-3/4"></div>
+                  <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-200/50 flex-shrink-0" style={{ height: '75px', width: '100px', padding: '12.5px' }}>
+                    <div className="bg-purple-500 rounded mb-1" style={{ width: '25px', height: '25px' }}></div>
+                    <div className="bg-purple-300 rounded" style={{ height: '6.25px', width: '75%' }}></div>
                   </div>
-                  <div className="h-12 lg:h-16 bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200/50 p-1.5 lg:p-2 flex-shrink-0 w-16 lg:w-24">
-                    <div className="w-4 h-4 lg:w-6 lg:h-6 bg-red-500 rounded mb-1"></div>
-                    <div className="h-1 lg:h-1.5 bg-red-300 rounded w-3/4"></div>
+                  <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200/50 flex-shrink-0" style={{ height: '75px', width: '100px', padding: '12.5px' }}>
+                    <div className="bg-red-500 rounded mb-1" style={{ width: '25px', height: '25px' }}></div>
+                    <div className="bg-red-300 rounded" style={{ height: '6.25px', width: '75%' }}></div>
                   </div>
-                  <div className="h-12 lg:h-16 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg border border-yellow-200/50 p-1.5 lg:p-2 flex-shrink-0 w-16 lg:w-24">
-                    <div className="w-4 h-4 lg:w-6 lg:h-6 bg-yellow-500 rounded mb-1"></div>
-                    <div className="h-1 lg:h-1.5 bg-yellow-300 rounded w-3/4"></div>
-                  </div>
-                  <div className="h-12 lg:h-16 bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg border border-pink-200/50 p-1.5 lg:p-2 flex-shrink-0 w-16 lg:w-24">
-                    <div className="w-4 h-4 lg:w-6 lg:h-6 bg-pink-500 rounded mb-1"></div>
-                    <div className="h-1 lg:h-1.5 bg-pink-300 rounded w-3/4"></div>
-                  </div>
-                  <div className="h-12 lg:h-16 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg border border-indigo-200/50 p-1.5 lg:p-2 flex-shrink-0 w-16 lg:w-24">
-                    <div className="w-4 h-4 lg:w-6 lg:h-6 bg-indigo-500 rounded mb-1"></div>
-                    <div className="h-1 lg:h-1.5 bg-indigo-300 rounded w-3/4"></div>
+                  <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg border border-yellow-200/50 flex-shrink-0" style={{ height: '75px', width: '100px', padding: '12.5px' }}>
+                    <div className="bg-yellow-500 rounded mb-1" style={{ width: '25px', height: '25px' }}></div>
+                    <div className="bg-yellow-300 rounded" style={{ height: '6.25px', width: '75%' }}></div>
                   </div>
                 </div>
               </div>
               
               {/* Bottom content area - Static */}
-              <div className="mt-4 lg:mt-6 space-y-1.5 lg:space-y-2">
-                <div className="h-1.5 lg:h-2 bg-gray-200 rounded w-full"></div>
-                <div className="h-1.5 lg:h-2 bg-gray-200 rounded w-4/5"></div>
-                <div className="h-1.5 lg:h-2 bg-gray-200 rounded w-3/5"></div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6.25px' }}>
+                <div className="bg-gray-200 rounded" style={{ height: '6.25px', width: '100%' }}></div>
+                <div className="bg-gray-200 rounded" style={{ height: '6.25px', width: '80%' }}></div>
+                <div className="bg-gray-200 rounded" style={{ height: '6.25px', width: '60%' }}></div>
               </div>
             </div>
           </div>
         </div>
         
         {/* Decorative elements */}
-        <div className="absolute -z-10 top-2 left-2 lg:top-4 lg:left-4 w-full h-full bg-gradient-to-br from-primary/10 to-blue-500/10 rounded-2xl lg:rounded-3xl blur-sm"></div>
+        <div className="absolute -z-10 bg-gradient-to-br from-primary/10 to-blue-500/10 blur-sm" style={{ top: '12.5px', left: '12.5px', width: '100%', height: '100%', borderRadius: '25px' }}></div>
       </div>
     </div>
   )
@@ -360,11 +353,12 @@ export function Home() {
           <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
         
-        <div className="relative w-full py-8 max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Left side - Text content */}
-            <div className="text-center lg:text-left space-y-6 lg:space-y-8 flex flex-col justify-center">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight animate-fade-in delay-100 pb-4 relative z-10" style={{lineHeight: '1.16'}}>
+        {/* Grid-aligned container with 50px spacing */}
+        <div className="relative w-full max-w-7xl mx-auto" style={{ padding: '50px' }}>
+          <div className="grid lg:grid-cols-2 items-center" style={{ gap: '100px' }}>
+            {/* Left side - Text content aligned to grid */}
+            <div className="text-center lg:text-left flex flex-col justify-center" style={{ gap: '50px' }}>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight animate-fade-in delay-100 relative z-10" style={{lineHeight: '1.16'}}>
                 <div>Custom</div>
                 <div>websites</div>
                 <div>that</div>
@@ -374,7 +368,7 @@ export function Home() {
                   </div>
                 </div>
               </h1>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in delay-300">
+              <div className="flex flex-col sm:flex-row justify-center lg:justify-start animate-fade-in delay-300" style={{ gap: '25px' }}>
                 <Button size="xl" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-4">
                   <Link to="/quote" className="group inline-flex items-center">
                     Get a Quote
@@ -385,11 +379,11 @@ export function Home() {
                   <Link to="/work">See Our Work</Link>
                 </Button>
               </div>
-              <div className="space-y-4 animate-fade-in delay-400">
+              <div className="animate-fade-in delay-400" style={{ gap: '25px', display: 'flex', flexDirection: 'column' }}>
                 <p className="text-sm sm:text-base text-muted-foreground">
                   From DKK 12,999 • Free consultation • 30-day support included
                 </p>
-                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 lg:gap-8 text-sm text-muted-foreground">
+                <div className="flex flex-wrap items-center justify-center lg:justify-start text-sm text-muted-foreground" style={{ gap: '25px' }}>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
                     <span>Fast delivery</span>
@@ -406,8 +400,8 @@ export function Home() {
               </div>
             </div>
             
-            {/* Right side - Hero image/graphic */}
-            <div className="relative order-1 lg:order-2 animate-fade-in delay-500 flex items-center justify-center mb-8 lg:mb-0">
+            {/* Right side - Hero image/graphic aligned to grid */}
+            <div className="relative order-1 lg:order-2 animate-fade-in delay-500 flex items-center justify-center mb-8 lg:mb-0" style={{marginTop: '-100px'}}>
               <InteractiveBrowserMockup />
             </div>
           </div>
