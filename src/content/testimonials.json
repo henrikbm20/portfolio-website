@@ -1,0 +1,66 @@
+[
+  {
+    "author": "Lars Andersen",
+    "quote": "Working with this team was exceptional. They delivered exactly what we needed, on time and within budget. Our online bookings increased by 40% in the first month.",
+    "role": "Owner",
+    "company": "Copenhagen Café",
+    "avatar": "/images/testimonials/lars.jpg",
+    "rating": 5
+  },
+  {
+    "author": "Maria Eriksson",
+    "quote": "The analytics platform they built transformed our manufacturing processes. We're now able to predict and prevent production issues before they happen.",
+    "role": "Operations Director",
+    "company": "NordTech Solutions",
+    "avatar": "/images/testimonials/maria.jpg",
+    "rating": 5
+  },
+  {
+    "author": "Henrik Nielsen",
+    "quote": "Our new website perfectly captures our brand aesthetic. Online sales have nearly doubled, and customer feedback has been overwhelmingly positive.",
+    "role": "Founder",
+    "company": "Danish Design Studio",
+    "avatar": "/images/testimonials/henrik.jpg",
+    "rating": 5
+  },
+  {
+    "author": "Sarah Johnson",
+    "quote": "The fitness tracking app they created is intuitive and powerful. My clients love the progress visualization features, and the offline mode is perfect for gym use.",
+    "role": "Fitness Coach",
+    "company": "ActiveLife Gym",
+    "avatar": "/images/testimonials/sarah.jpg",
+    "rating": 5
+  },
+  {
+    "author": "Anna Petersen",
+    "quote": "We can now take orders online and our customers love being able to skip the queue. It's been a game-changer for our small family business.",
+    "role": "Owner",
+    "company": "Svendborg Bakery",
+    "avatar": "/images/testimonials/anna.jpg",
+    "rating": 5
+  },
+  {
+    "author": "Michael Chen",
+    "quote": "Professional, responsive, and delivered outstanding results. The e-commerce platform they built handles our growing order volume perfectly.",
+    "role": "CEO",
+    "company": "Nordic Outdoors",
+    "avatar": "/images/testimonials/michael.jpg",
+    "rating": 5
+  },
+  {
+    "author": "Emma Lindqvist",
+    "quote": "The website redesign exceeded our expectations. Load times improved dramatically and our conversion rate increased by 60%. Highly recommended!",
+    "role": "Marketing Manager",
+    "company": "GreenTech Innovation",
+    "avatar": "/images/testimonials/emma.jpg",
+    "rating": 5
+  },
+  {
+    "author": "Thomas Bjørn",
+    "quote": "They understood our vision perfectly and brought it to life. The booking system integration was seamless and our customers find it very easy to use.",
+    "role": "Owner",
+    "company": "Coastal Wellness Spa",
+    "avatar": "/images/testimonials/thomas.jpg",
+    "rating": 5
+  }
+]

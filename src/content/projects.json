@@ -1,0 +1,171 @@
+[
+  {
+    "slug": "copenhagen-cafe",
+    "title": "Copenhagen Café",
+    "subtitle": "Menu + booking system with POS integration",
+    "year": 2024,
+    "industry": "Hospitality",
+    "stack": ["React", "Tailwind CSS", "Node.js", "PostgreSQL", "Stripe"],
+    "thumbnail": "/images/projects/cph-cafe-thumb.jpg",
+    "gallery": [
+      "/images/projects/cph-cafe-1.jpg",
+      "/images/projects/cph-cafe-2.jpg",
+      "/images/projects/cph-cafe-3.jpg"
+    ],
+    "summary": "Revamped online presence with mobile-first design and integrated booking system that increased online reservations by 38%.",
+    "problem": "The café struggled with low online bookings, slow website performance, and manual reservation management that led to missed opportunities.",
+    "solution": "Built a fast, mobile-optimized website with integrated booking API, streamlined menu presentation, and automated table management system.",
+    "impact": {
+      "conversionLiftPct": 38,
+      "loadTimeMs": 900,
+      "trafficIncrease": 65
+    },
+    "url": "https://copenhagencafe.dk",
+    "repo": "",
+    "testimonials": [
+      {
+        "author": "Lars Andersen",
+        "quote": "Online bookings jumped immediately after the new site launched. The interface is so much easier for our customers.",
+        "role": "Owner",
+        "company": "Copenhagen Café"
+      }
+    ],
+    "featured": true,
+    "complexity": "medium"
+  },
+  {
+    "slug": "nordtech-solutions",
+    "title": "NordTech Solutions",
+    "subtitle": "B2B SaaS platform for manufacturing analytics",
+    "year": 2024,
+    "industry": "Technology",
+    "stack": ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "AWS"],
+    "thumbnail": "/images/projects/nordtech-thumb.jpg",
+    "gallery": [
+      "/images/projects/nordtech-1.jpg",
+      "/images/projects/nordtech-2.jpg",
+      "/images/projects/nordtech-3.jpg",
+      "/images/projects/nordtech-4.jpg"
+    ],
+    "summary": "Enterprise-grade analytics dashboard that helps manufacturing companies optimize their production workflows and reduce costs.",
+    "problem": "Manufacturing teams needed real-time insights into production efficiency but were stuck with outdated reporting tools and manual processes.",
+    "solution": "Developed a comprehensive SaaS platform with real-time dashboards, automated reporting, and predictive analytics for production optimization.",
+    "impact": {
+      "conversionLiftPct": 52,
+      "loadTimeMs": 1200,
+      "revenue": 2400000
+    },
+    "url": "https://nordtech-solutions.com",
+    "repo": "",
+    "testimonials": [
+      {
+        "author": "Maria Eriksson",
+        "quote": "The platform transformed how we track production. We've reduced waste by 23% in just three months.",
+        "role": "Operations Director",
+        "company": "NordTech Solutions"
+      }
+    ],
+    "featured": true,
+    "complexity": "complex"
+  },
+  {
+    "slug": "danish-design-studio",
+    "title": "Danish Design Studio",
+    "subtitle": "Portfolio showcase with e-commerce integration",
+    "year": 2023,
+    "industry": "Design",
+    "stack": ["React", "Shopify", "Framer Motion", "Tailwind CSS"],
+    "thumbnail": "/images/projects/design-studio-thumb.jpg",
+    "gallery": [
+      "/images/projects/design-studio-1.jpg",
+      "/images/projects/design-studio-2.jpg"
+    ],
+    "summary": "Elegant portfolio website with integrated e-commerce that showcases handcrafted furniture and increased online sales by 89%.",
+    "problem": "The design studio had beautiful products but their outdated website wasn't converting visitors into customers, and managing inventory was a nightmare.",
+    "solution": "Created a visually stunning portfolio with seamless Shopify integration, featuring high-quality imagery, smooth animations, and streamlined checkout.",
+    "impact": {
+      "conversionLiftPct": 89,
+      "loadTimeMs": 800,
+      "trafficIncrease": 45
+    },
+    "url": "https://danishdesignstudio.dk",
+    "repo": "",
+    "testimonials": [
+      {
+        "author": "Henrik Nielsen",
+        "quote": "Our online sales have nearly doubled since the new website launched. The design perfectly captures our brand aesthetic.",
+        "role": "Founder",
+        "company": "Danish Design Studio"
+      }
+    ],
+    "featured": false,
+    "complexity": "medium"
+  },
+  {
+    "slug": "fitness-tracker-app",
+    "title": "FitTrack Pro",
+    "subtitle": "Progressive web app for personal fitness tracking",
+    "year": 2023,
+    "industry": "Health & Fitness",
+    "stack": ["React", "PWA", "Chart.js", "Firebase", "Stripe"],
+    "thumbnail": "/images/projects/fittrack-thumb.jpg",
+    "gallery": [
+      "/images/projects/fittrack-1.jpg",
+      "/images/projects/fittrack-2.jpg",
+      "/images/projects/fittrack-3.jpg"
+    ],
+    "summary": "Progressive web app that helps users track workouts, nutrition, and progress with beautiful data visualizations and social features.",
+    "problem": "Fitness enthusiasts needed a comprehensive tracking solution that worked offline and provided meaningful insights into their progress.",
+    "solution": "Built a PWA with offline functionality, detailed analytics, social sharing, and subscription-based premium features for advanced tracking.",
+    "impact": {
+      "conversionLiftPct": 34,
+      "loadTimeMs": 650,
+      "trafficIncrease": 120
+    },
+    "url": "https://fittrackpro.app",
+    "repo": "https://github.com/username/fittrack-pro",
+    "testimonials": [
+      {
+        "author": "Sarah Johnson",
+        "quote": "FitTrack Pro keeps me motivated with its progress tracking. The offline mode is perfect for gym use.",
+        "role": "Fitness Coach",
+        "company": "ActiveLife Gym"
+      }
+    ],
+    "featured": false,
+    "complexity": "complex"
+  },
+  {
+    "slug": "local-bakery",
+    "title": "Svendborg Bakery",
+    "subtitle": "Local bakery with online ordering system",
+    "year": 2023,
+    "industry": "Food & Beverage",
+    "stack": ["WordPress", "WooCommerce", "Stripe", "Custom CSS"],
+    "thumbnail": "/images/projects/bakery-thumb.jpg",
+    "gallery": [
+      "/images/projects/bakery-1.jpg",
+      "/images/projects/bakery-2.jpg"
+    ],
+    "summary": "Charming local bakery website with online ordering that increased weekly orders by 156% and streamlined pickup processes.",
+    "problem": "The family bakery was losing customers to larger chains and needed a way to take online orders and build customer loyalty.",
+    "solution": "Developed a warm, inviting website with online ordering, loyalty program integration, and pickup scheduling that reflects their artisanal brand.",
+    "impact": {
+      "conversionLiftPct": 156,
+      "loadTimeMs": 1100,
+      "trafficIncrease": 78
+    },
+    "url": "https://svendborg-bakery.dk",
+    "repo": "",
+    "testimonials": [
+      {
+        "author": "Anna Petersen",
+        "quote": "We can now take orders online and our customers love being able to skip the queue. It's been a game-changer for our business.",
+        "role": "Owner",
+        "company": "Svendborg Bakery"
+      }
+    ],
+    "featured": false,
+    "complexity": "simple"
+  }
+]

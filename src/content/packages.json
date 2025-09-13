@@ -1,0 +1,91 @@
+[
+  {
+    "id": "starter",
+    "name": "Starter",
+    "description": "Perfect for small businesses and personal brands looking to establish their online presence.",
+    "basePrice": 12999,
+    "features": [
+      "Up to 5 pages",
+      "Mobile-responsive design",
+      "Contact form integration",
+      "Basic SEO optimization",
+      "Social media integration",
+      "SSL certificate included",
+      "1 month of support",
+      "2 rounds of revisions"
+    ],
+    "deliveryTime": "2-3 weeks",
+    "revisions": 2,
+    "support": "1 month",
+    "complexity": "simple"
+  },
+  {
+    "id": "business",
+    "name": "Business",
+    "description": "Ideal for growing businesses that need more functionality and professional features.",
+    "basePrice": 24999,
+    "features": [
+      "Up to 15 pages",
+      "Custom design & branding",
+      "Advanced contact forms",
+      "Blog/news system",
+      "Google Analytics setup",
+      "Advanced SEO optimization",
+      "Email newsletter integration",
+      "Social media feeds",
+      "2 months of support",
+      "Unlimited revisions"
+    ],
+    "popular": true,
+    "deliveryTime": "4-6 weeks",
+    "revisions": -1,
+    "support": "2 months",
+    "complexity": "medium"
+  },
+  {
+    "id": "ecommerce",
+    "name": "E-commerce",
+    "description": "Complete online store solution with payment processing and inventory management.",
+    "basePrice": 39999,
+    "features": [
+      "Unlimited pages & products",
+      "Payment gateway integration",
+      "Inventory management",
+      "Order tracking system",
+      "Customer accounts",
+      "Discount & coupon system",
+      "Shipping calculator",
+      "Multi-currency support",
+      "Advanced analytics",
+      "3 months of support",
+      "Unlimited revisions"
+    ],
+    "deliveryTime": "6-8 weeks",
+    "revisions": -1,
+    "support": "3 months",
+    "complexity": "complex"
+  },
+  {
+    "id": "custom",
+    "name": "Custom",
+    "description": "Tailored solutions for unique requirements and complex business processes.",
+    "basePrice": 59999,
+    "features": [
+      "Fully custom development",
+      "API integrations",
+      "Database design",
+      "User authentication",
+      "Custom admin panel",
+      "Third-party integrations",
+      "Performance optimization",
+      "Security hardening",
+      "6 months of support",
+      "Unlimited revisions",
+      "Priority support"
+    ],
+    "deliveryTime": "8-12 weeks",
+    "revisions": -1,
+    "support": "6 months",
+    "complexity": "complex"
+  }
+]
