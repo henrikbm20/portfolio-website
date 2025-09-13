@@ -4,26 +4,53 @@
 
 @layer base {
   :root {
+    /* Professional color scheme - Deep navy and warm neutrals */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 215 25% 27%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 27%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
+    --popover-foreground: 215 25% 27%;
+    --primary: 215 84% 27%; /* Deep navy blue */
     --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 84% 4.9%;
+    --secondary: 216 12% 84%; /* Light gray-blue */
+    --secondary-foreground: 215 25% 27%;
     --muted: 210 40% 96%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 84% 4.9%;
+    --accent: 43 74% 58%; /* Warm gold accent */
+    --accent-foreground: 215 25% 27%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.75rem;
+    --ring: 215 84% 27%;
+    --radius: 0.5rem; /* More conservative radius */
+    
+    /* Custom professional colors */
+    --navy-50: 215 100% 97%;
+    --navy-100: 215 96% 91%;
+    --navy-200: 216 95% 84%;
+    --navy-300: 217 91% 75%;
+    --navy-400: 218 84% 63%;
+    --navy-500: 219 78% 51%;
+    --navy-600: 220 70% 42%;
+    --navy-700: 215 84% 27%;
+    --navy-800: 216 83% 21%;
+    --navy-900: 217 91% 16%;
+    
+    --cream-50: 48 100% 97%;
+    --cream-100: 48 96% 89%;
+    --cream-200: 47 92% 83%;
+    --cream-300: 46 90% 77%;
+    --cream-400: 43 89% 70%;
+    --cream-500: 43 74% 58%;
+    
+    --sage-50: 138 20% 96%;
+    --sage-100: 138 15% 91%;
+    --sage-200: 138 12% 84%;
+    --sage-300: 138 10% 75%;
+    --sage-400: 138 8% 63%;
+    --sage-500: 138 6% 51%;
   }
 
   .dark {
