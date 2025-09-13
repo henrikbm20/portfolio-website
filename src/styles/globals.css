@@ -157,3 +157,30 @@
 .animate-blink {
   animation: blink 1s infinite;
 }
+
+/* Slide animations for slideshow */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.5s ease-in-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.5s ease-in-out forwards;
+}

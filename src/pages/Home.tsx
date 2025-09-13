@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, CheckCircle, Star, TrendingUp } from 'lucide-react'
+import { ArrowRight, CheckCircle, Star, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Hero, Section } from '@/components/ui/layout'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -35,6 +35,163 @@ const benefits = [
 ]
 
 const featuredProjects = projects.filter(p => p.featured).slice(0, 3)
+
+// Hero Page Slideshow Component
+function HeroPageSlideshow() {
+  const heroPages = [
+    {
+      url: 'https://april.papairs.com',
+      title: 'April PaPairs',
+      description: 'Dating platform with personalized matchmaking'
+    },
+    {
+      url: 'https://barikisu.papairs.com',
+      title: 'Barikisu PaPairs',
+      description: 'Specialized dating platform for African diaspora'
+    },
+    {
+      url: 'https://testing.papairs.com',
+      title: 'Testing PaPairs',
+      description: 'Development environment for platform testing'
+    },
+    {
+      url: 'https://papairs.com',
+      title: 'PaPairs',
+      description: 'Main dating platform connecting compatible singles'
+    },
+    {
+      url: 'https://henrikbm20.github.io/everythinginvestment',
+      title: 'Investment',
+      description: 'Main dating platform connecting compatible singles'
+    }
+  ]
+
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+
+  // Auto-advance slides every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNextSlide()
+    }, 4000)
+
+    return () => clearInterval(interval)
+  }, [currentSlide])
+
+  const changeSlide = (newSlideIndex: number) => {
+    if (isTransitioning || newSlideIndex === currentSlide) return
+    
+    setIsTransitioning(true)
+    
+    // Update slide after a short delay for animation
+    setTimeout(() => {
+      setCurrentSlide(newSlideIndex)
+      setIsTransitioning(false)
+    }, 300)
+  }
+
+  const handleNextSlide = () => {
+    const nextIndex = (currentSlide + 1) % heroPages.length
+    changeSlide(nextIndex)
+  }
+
+  const handlePrevSlide = () => {
+    const prevIndex = (currentSlide - 1 + heroPages.length) % heroPages.length
+    changeSlide(prevIndex)
+  }
+
+  const goToSlide = (index: number) => {
+    changeSlide(index)
+  }
+
+  return (
+    <div className="relative max-w-4xl mx-auto">
+      {/* Main slideshow area */}
+      <div className="relative bg-white rounded-xl shadow-lg overflow-hidden group">
+        <div className="aspect-video relative overflow-hidden">
+          {/* Current slide with fade transition */}
+          <div 
+            className={`w-full h-full transition-opacity duration-300 ease-in-out ${
+              isTransitioning ? 'opacity-0' : 'opacity-100'
+            }`}
+          >
+            <iframe 
+              src={heroPages[currentSlide].url} 
+              className="w-full h-full scale-50 origin-top-left transform"
+              style={{ width: '200%', height: '200%' }}
+              title={`${heroPages[currentSlide].title} Hero`}
+              key={`slide-${currentSlide}`}
+            />
+          </div>
+          
+          <div className="absolute inset-0 bg-transparent hover:bg-black/5 transition-colors cursor-pointer" 
+               onClick={() => window.open(heroPages[currentSlide].url, '_blank')} />
+          
+          {/* Navigation arrows */}
+          <button
+            onClick={handlePrevSlide}
+            disabled={isTransitioning}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={handleNextSlide}
+            disabled={isTransitioning}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+        
+        {/* Slide info */}
+        <div className="p-6">
+          <div className="flex items-center justify-between">
+            <div className={`transition-all duration-300 ease-in-out ${
+              isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'
+            }`}>
+              <h4 className="font-semibold text-lg mb-2">{heroPages[currentSlide].title}</h4>
+              <p className="text-muted-foreground text-sm mb-3">{heroPages[currentSlide].description}</p>
+              <a 
+                href={heroPages[currentSlide].url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1 transition-colors"
+              >
+                Visit Live Site <ArrowRight className="w-3 h-3" />
+              </a>
+            </div>
+            
+            {/* Slide indicators */}
+            <div className="flex gap-2">
+              {heroPages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  disabled={isTransitioning}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 transform hover:scale-125 disabled:cursor-not-allowed ${
+                    index === currentSlide 
+                      ? 'bg-primary scale-110' 
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Slide counter */}
+      <div className="text-center mt-4">
+        <span className={`text-sm text-muted-foreground transition-opacity duration-300 ${
+          isTransitioning ? 'opacity-50' : 'opacity-100'
+        }`}>
+          {currentSlide + 1} of {heroPages.length} • Auto-advancing every 4 seconds
+        </span>
+      </div>
+    </div>
+  )
+}
 
 // Typewriter Effect Component
 function TypewriterText() {
@@ -296,52 +453,63 @@ export function Home() {
       <Section className="bg-muted/30">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Recent success stories
+            Our Work
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             See how we've helped businesses like yours grow with custom web solutions.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredProjects.map((project) => (
-            <Card key={project.slug} className="group hover:shadow-lg transition-shadow">
-              <div className="aspect-video bg-muted rounded-t-2xl overflow-hidden flex items-center justify-center">
-                <img 
-                  src={project.thumbnail} 
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    const parent = target.parentElement;
-                    if (parent) {
-                      parent.innerHTML = `<div class="w-full h-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center text-muted-foreground font-medium">${project.title}</div>`;
-                    }
-                  }}
-                />
-              </div>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">{project.industry}</span>
-                  <span className="text-sm text-muted-foreground">{project.year}</span>
+
+        {/* Live Hero Page Previews */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-center mb-8">Live Hero Page Previews</h3>
+          <HeroPageSlideshow />
+        </div>
+
+        {/* Portfolio Projects */}
+        <div>
+          <h3 className="text-2xl font-bold text-center mb-8">Portfolio Case Studies</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProjects.map((project) => (
+              <Card key={project.slug} className="group hover:shadow-lg transition-shadow">
+                <div className="aspect-video bg-muted rounded-t-2xl overflow-hidden flex items-center justify-center">
+                  <img 
+                    src={project.thumbnail} 
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent) {
+                        parent.innerHTML = `<div class="w-full h-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center text-muted-foreground font-medium">${project.title}</div>`;
+                      }
+                    }}
+                  />
                 </div>
-                <CardTitle className="text-xl">{project.title}</CardTitle>
-                <CardDescription>{project.subtitle}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">{project.summary}</p>
-                {project.impact.conversionLiftPct && (
-                  <div className="flex items-center text-sm text-green-600 mb-4">
-                    <TrendingUp className="h-4 w-4 mr-1" />
-                    +{project.impact.conversionLiftPct}% conversion increase
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">{project.industry}</span>
+                    <span className="text-sm text-muted-foreground">{project.year}</span>
                   </div>
-                )}
-                <Button variant="outline" size="sm" asChild className="w-full">
-                  <Link to={`/work/${project.slug}`}>View Case Study</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+                  <CardTitle className="text-xl">{project.title}</CardTitle>
+                  <CardDescription>{project.subtitle}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground mb-4">{project.summary}</p>
+                  {project.impact.conversionLiftPct && (
+                    <div className="flex items-center text-sm text-green-600 mb-4">
+                      <TrendingUp className="h-4 w-4 mr-1" />
+                      +{project.impact.conversionLiftPct}% conversion increase
+                    </div>
+                  )}
+                  <Button variant="outline" size="sm" asChild className="w-full">
+                    <Link to={`/work/${project.slug}`}>View Case Study</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
         <div className="text-center mt-12">
           <Button variant="outline" size="lg" asChild>
