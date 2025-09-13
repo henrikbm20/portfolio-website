@@ -158,29 +158,27 @@
   animation: blink 1s infinite;
 }
 
-/* Slide animations for slideshow */
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+/* Grid Background Utilities */
+.grid-background {
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: 0 0, 0 0;
 }
 
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+.grid-background-subtle {
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: 0 0, 0 0;
 }
 
-.animate-slide-in-right {
-  animation: slideInRight 0.5s ease-in-out forwards;
-}
-
-.animate-slide-in-left {
-  animation: slideInLeft 0.5s ease-in-out forwards;
+.grid-background-dark {
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.15) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: 0 0, 0 0;
 }

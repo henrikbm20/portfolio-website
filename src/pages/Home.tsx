@@ -352,7 +352,7 @@ export function Home() {
   return (
     <>
       {/* Hero Section */}
-      <Hero size="lg" className="relative bg-gradient-to-br from-primary/5 via-background to-primary/10 overflow-hidden min-h-screen flex items-center pt-0 -mt-16 pt-16">
+      <Hero size="lg" className="relative bg-gradient-to-br from-primary/5 via-background to-primary/10 overflow-hidden min-h-screen flex items-center pt-0 -mt-16 pt-16 grid-background-subtle">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-4 -right-4 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
@@ -415,7 +415,7 @@ export function Home() {
       </Hero>
 
       {/* Benefits Section */}
-      <Section className="relative -mt-16 pt-24">{/* Smooth overlap transition */}
+      <Section className="relative -mt-16 pt-24 grid-background-subtle">{/* Smooth overlap transition */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background"></div>
         <div className="relative z-10">
         <div className="text-center mb-16">
@@ -450,7 +450,7 @@ export function Home() {
       </Section>
 
       {/* Featured Projects */}
-      <Section className="bg-muted/30">
+      <Section className="bg-muted/30 grid-background-subtle">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Our Work
