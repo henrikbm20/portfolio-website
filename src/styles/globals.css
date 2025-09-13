@@ -143,3 +143,17 @@
 .delay-1000 {
   animation-delay: 1s;
 }
+
+/* Custom blink animation for typewriter cursor */
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}

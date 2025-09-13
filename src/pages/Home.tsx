@@ -73,7 +73,7 @@ function TypewriterText() {
   return (
     <span className="text-primary bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent relative z-10 inline-block text-left">
       {currentText}
-      <span className="animate-pulse">|</span>
+      <span className="animate-pulse text-primary opacity-100 ml-1 font-thin">│</span>
     </span>
   )
 }
