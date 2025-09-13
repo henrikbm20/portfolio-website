@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, CheckCircle, Star, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, CheckCircle, Star, TrendingUp, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react'
 import { Hero, Section } from '@/components/ui/layout'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -342,6 +342,18 @@ function InteractiveBrowserMockup() {
 }
 
 export function Home() {
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show arrow only when near the top (within first 100px)
+      setShowScrollIndicator(window.scrollY < 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       {/* Hero Section */}
@@ -368,17 +380,6 @@ export function Home() {
                   </div>
                 </div>
               </h1>
-              <div className="flex flex-col sm:flex-row justify-center lg:justify-start animate-fade-in delay-300" style={{ gap: '25px' }}>
-                <Button size="xl" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-4">
-                  <Link to="/quote" className="group inline-flex items-center">
-                    Get a Quote
-                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
-                <Button variant="outline" size="xl" asChild className="text-lg px-8 py-4">
-                  <Link to="/work">See Our Work</Link>
-                </Button>
-              </div>
               <div className="animate-fade-in delay-400" style={{ gap: '25px', display: 'flex', flexDirection: 'column' }}>
                 <p className="text-sm sm:text-base text-muted-foreground">
                   From DKK 12,999 • Free consultation • 30-day support included
@@ -401,15 +402,39 @@ export function Home() {
             </div>
             
             {/* Right side - Hero image/graphic aligned to grid */}
-            <div className="relative order-1 lg:order-2 animate-fade-in delay-500 flex items-center justify-center mb-8 lg:mb-0" style={{marginTop: '-100px'}}>
+            <div className="relative order-1 lg:order-2 animate-fade-in delay-500 flex items-center justify-center mb-8 lg:mb-0" style={{marginTop: '-60px'}}>
               <InteractiveBrowserMockup />
+            </div>
+          </div>
+        </div>
+        
+        {/* Scroll indicator arrow */}
+        <div 
+          className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-gentle-bounce z-50 transition-opacity duration-500 ease-in-out ${
+            showScrollIndicator ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
+        >
+          <div 
+            className="flex flex-col items-center cursor-pointer group relative z-50" 
+            onClick={() => {
+              const benefitsSection = document.querySelector('#benefits-section');
+              if (benefitsSection) {
+                benefitsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              } else {
+                window.scrollTo({top: window.innerHeight, behavior: 'smooth'});
+              }
+            }}
+            style={{ pointerEvents: 'auto' }}
+          >
+            <div className="w-8 h-8 border border-muted-foreground rounded-full flex items-center justify-center group-hover:border-foreground group-hover:bg-foreground/10 transition-all bg-background/80 backdrop-blur-sm">
+              <ChevronDown className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
             </div>
           </div>
         </div>
       </Hero>
 
       {/* Benefits Section */}
-      <Section className="relative -mt-16 pt-24">{/* Smooth overlap transition */}
+      <Section id="benefits-section" className="relative -mt-16 pt-24">{/* Smooth overlap transition */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background"></div>
         <div className="relative z-10">
         <div className="text-center mb-16">
