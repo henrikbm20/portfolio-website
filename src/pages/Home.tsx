@@ -389,6 +389,136 @@ export function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Chat Animation Effect
+  useEffect(() => {
+    const messageIds = ['message-1', 'message-2', 'message-3'];
+    let isAnimating = false;
+    let animationTimeouts: NodeJS.Timeout[] = [];
+
+    // Function to reset all messages to hidden
+    const resetMessages = () => {
+      console.log('Resetting messages to hidden state');
+      messageIds.forEach(id => {
+        const message = document.getElementById(id);
+        if (message) {
+          console.log(`Resetting ${id}`);
+          message.style.opacity = '0';
+          message.style.transform = 'translateY(30px)';
+          message.style.transition = 'all 0.5s ease-out';
+        } else {
+          console.warn(`Message element ${id} not found`);
+        }
+      });
+    };
+
+    // Function to show a message
+    const showMessage = (messageId: string) => {
+      const message = document.getElementById(messageId);
+      if (message) {
+        console.log(`Showing ${messageId}`);
+        message.style.opacity = '1';
+        message.style.transform = 'translateY(0)';
+        
+        // Push existing visible messages up slightly
+        const chatContainer = document.getElementById('chat-container');
+        if (chatContainer) {
+          const visibleMessages = chatContainer.querySelectorAll('[id^="message-"]');
+          visibleMessages.forEach((msg) => {
+            const elem = msg as HTMLElement;
+            if (elem.id !== messageId && elem.style.opacity === '1') {
+              elem.style.transform = 'translateY(-10px)';
+              setTimeout(() => {
+                elem.style.transform = 'translateY(0)';
+              }, 300);
+            }
+          });
+        }
+      } else {
+        console.error(`Message element ${messageId} not found!`);
+      }
+    };
+
+    // Function to clear all messages
+    const clearAllMessages = () => {
+      console.log('Clearing all messages');
+      messageIds.forEach((id, index) => {
+        const message = document.getElementById(id);
+        if (message && message.style.opacity === '1') {
+          const timeout = setTimeout(() => {
+            message.style.transition = 'all 0.6s ease-in';
+            message.style.transform = 'translateY(-80px)';
+            message.style.opacity = '0';
+          }, index * 150);
+          animationTimeouts.push(timeout);
+        }
+      });
+    };
+
+    // Main animation sequence
+    const runAnimation = () => {
+      if (isAnimating) {
+        console.log('Animation already running, skipping');
+        return;
+      }
+      isAnimating = true;
+      
+      console.log('Starting chat animation sequence');
+      
+      // Clear previous timeouts
+      animationTimeouts.forEach(timeout => clearTimeout(timeout));
+      animationTimeouts = [];
+      
+      // Reset everything
+      resetMessages();
+      
+      // Animation timeline
+      const timeout1 = setTimeout(() => showMessage('message-1'), 1000);
+      const timeout2 = setTimeout(() => showMessage('message-2'), 2500);
+      const timeout3 = setTimeout(() => showMessage('message-3'), 4000);
+      const timeout4 = setTimeout(() => {
+        clearAllMessages();
+        const timeout5 = setTimeout(() => {
+          isAnimating = false;
+          runAnimation(); // Restart loop
+        }, 2000);
+        animationTimeouts.push(timeout5);
+      }, 7000);
+      
+      animationTimeouts.push(timeout1, timeout2, timeout3, timeout4);
+    };
+
+    // Wait for DOM to be ready
+    const checkDOM = () => {
+      const message1 = document.getElementById('message-1');
+      const message2 = document.getElementById('message-2'); 
+      const message3 = document.getElementById('message-3');
+      
+      if (message1 && message2 && message3) {
+        console.log('All message elements found, starting animation');
+        resetMessages();
+        
+        // Start animation after a short delay
+        const startTimeout = setTimeout(() => {
+          runAnimation();
+        }, 500);
+        animationTimeouts.push(startTimeout);
+      } else {
+        console.log('DOM not ready, checking again...');
+        setTimeout(checkDOM, 100);
+      }
+    };
+
+    // Start checking DOM
+    checkDOM();
+
+    // Cleanup
+    return () => {
+      animationTimeouts.forEach(timeout => clearTimeout(timeout));
+      isAnimating = false;
+      console.log('Chat animation cleanup');
+    };
+  }, []);
+
   return (
     <>
       {/* Hero Section */}
@@ -497,6 +627,103 @@ export function Home() {
               </Card>
             )
           })}
+        </div>
+      </Section>
+
+      {/* Customer Support Chat Animation Section */}
+      <Section className="relative bg-muted/30 py-24">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Always Here to Help
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            From project start to launch and beyond, our dedicated support team ensures your success every step of the way.
+          </p>
+        </div>
+
+        <div className="max-w-md mx-auto">
+          {/* Chat Window */}
+          <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-border">
+            {/* Chat Header */}
+            <div className="bg-gradient-to-r from-primary to-primary/80 p-4 text-white">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold">Dequ Customer Support</h3>
+                  <p className="text-xs text-white/80">Always online</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Chat Messages Container */}
+            <div id="chat-container" className="p-4 h-80 bg-gradient-to-b from-blue-50 to-white overflow-hidden relative flex flex-col justify-end">
+              
+              {/* Messages will appear from bottom to top */}
+              <div className="flex flex-col gap-3">
+                
+                {/* Placeholder Message 1 - skeleton lines */}
+                <div id="message-1" className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary font-bold text-sm">D</span>
+                  </div>
+                  <div className="bg-white rounded-lg rounded-tl-none p-3 shadow-sm border max-w-xs">
+                    <div className="space-y-2">
+                      <div className="h-2 bg-gray-300 w-32"></div>
+                      <div className="h-2 bg-gray-300 w-20"></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Placeholder Message 2 - skeleton lines */}
+                <div id="message-2" className="flex items-start gap-3 justify-end">
+                  <div className="bg-primary text-white rounded-lg rounded-tr-none p-3 shadow-sm max-w-xs">
+                    <div className="space-y-2">
+                      <div className="h-2 bg-white/40 w-24"></div>
+                      <div className="h-2 bg-white/40 w-16"></div>
+                    </div>
+                  </div>
+                  <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white font-bold text-sm">You</span>
+                  </div>
+                </div>
+
+                {/* Final Delivery Message with File */}
+                <div id="message-3" className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary font-bold text-sm">D</span>
+                  </div>
+                  <div className="bg-white rounded-lg rounded-tl-none p-3 shadow-sm border max-w-xs">
+                    <p className="text-sm text-gray-800 mb-3">Here is your finished CIM, let us know if you want any changes ❤️</p>
+                    
+                    {/* File Download Component - matches your image exactly */}
+                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-medium text-gray-900 text-sm">Pied_Piper_CIM.pdf</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Chat Input (Static) - Simple bottom section */}
+            <div className="p-4 bg-white border-t flex justify-center">
+              <div className="space-y-2" style={{width: '20rem'}}>
+                <div className="h-2 bg-gray-300 w-full"></div>
+                <div className="h-2 bg-gray-300 w-3/4"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </Section>
 
