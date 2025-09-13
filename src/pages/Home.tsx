@@ -348,16 +348,51 @@ export function Home() {
     const handleScroll = () => {
       // Show arrow only when near the top (within first 100px)
       setShowScrollIndicator(window.scrollY < 100);
+
+      // Timeline animation
+      const timelineSection = document.querySelector('#timeline-progress')?.parentElement?.parentElement;
+      if (timelineSection) {
+        const rect = timelineSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Calculate how much of the timeline is visible (balanced progression)
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+        // Start animation later but line fills at moderate speed
+        const visibleStart = Math.max(0, (windowHeight * 0.7) - sectionTop); // Start at 70% of viewport
+        const visibleProgress = Math.min(1, visibleStart / (sectionHeight * 1)); // line speed
+
+        // Animate progress line
+        const progressLine = document.getElementById('timeline-progress');
+        if (progressLine) {
+          progressLine.style.height = `${visibleProgress * 100}%`;
+        }
+
+        // Animate timeline steps (6 steps now, much more gradual)
+        for (let i = 1; i <= 6; i++) {
+          const step = document.getElementById(`timeline-step-${i}`);
+          if (step) {
+            const stepProgress = Math.max(0, (visibleProgress * 8) - (i - 1) * 1.2); // Keep gradual steps
+            if (stepProgress > 0.1) { // Start fading in very early
+              step.style.opacity = Math.min(1, (stepProgress - 0.1) * 1.5).toString(); // Slower fade
+              step.style.transform = `translateY(${Math.max(0, (1 - stepProgress) * 50)}px)`; // More movement
+            }
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
+    // Trigger once on mount
+    handleScroll();
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <>
       {/* Hero Section */}
-      <Hero size="lg" className="relative bg-gradient-to-br from-primary/5 via-background to-primary/10 overflow-hidden min-h-screen flex items-center pt-0 -mt-16 pt-16 grid-background">
+      <Hero size="lg" className="relative bg-gradient-to-br from-primary/5 via-background to-primary/10 overflow-hidden min-h-screen flex items-center pt-0 -mt-16 pt-16">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-4 -right-4 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
@@ -433,15 +468,13 @@ export function Home() {
         </div>
       </Hero>
 
-      {/* Benefits Section */}
-      <Section id="benefits-section" className="relative -mt-16 pt-24">{/* Smooth overlap transition */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background"></div>
-        <div className="relative z-10">
+      {/* Why Choose Dequ - Now with Primary Background */}
+      <Section id="benefits-section" className="relative bg-primary text-primary-foreground py-24">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Why choose our web development?
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary-foreground">
+            Why choose Dequ?
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto">
             We create websites that not only look amazing but also drive real business results.
           </p>
         </div>
@@ -449,15 +482,15 @@ export function Home() {
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon
             return (
-              <Card key={index} className="text-center border-0 shadow-none">
+              <Card key={index} className="text-center border-0 shadow-none bg-primary-foreground/10 backdrop-blur-sm">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Icon className="h-6 w-6 text-primary" />
+                  <div className="w-12 h-12 bg-primary-foreground/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <Icon className="h-6 w-6 text-primary-foreground" />
                   </div>
-                  <CardTitle className="text-xl">{benefit.title}</CardTitle>
+                  <CardTitle className="text-xl text-primary-foreground">{benefit.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-base leading-relaxed">
+                  <CardDescription className="text-base leading-relaxed text-primary-foreground/80">
                     {benefit.description}
                   </CardDescription>
                 </CardContent>
@@ -465,6 +498,145 @@ export function Home() {
             )
           })}
         </div>
+      </Section>
+
+      {/* Timeline Section */}
+      <Section className="relative bg-background py-24">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Your Website Journey
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            From first contact to live website - every step of your journey with us
+          </p>
+        </div>
+
+        <div className="max-w-4xl mx-auto relative">
+          {/* Timeline Progress Line */}
+          <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-border">
+            <div 
+              id="timeline-progress"
+              className="w-full bg-gradient-to-b from-primary to-primary/60 transition-all duration-1000 ease-out"
+              style={{ height: '0%' }}
+            />
+          </div>
+
+          {/* Timeline Steps */}
+          <div className="space-y-16">
+            {/* Step 1: Contact */}
+            <div id="timeline-step-1" className="relative flex items-center opacity-0 translate-y-10 transition-all duration-800 ease-out">
+              <div className="flex-1 md:pr-8 md:text-right">
+                <div className="bg-card p-6 rounded-lg shadow-sm border md:ml-auto md:max-w-md hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-3 md:flex-row-reverse">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <span className="text-primary font-bold">1</span>
+                    </div>
+                    <h3 className="text-xl font-semibold">Initial Contact</h3>
+                  </div>
+                  <p className="text-muted-foreground">
+                    Reach out through our website, email, or phone. We respond within 24 hours to acknowledge your inquiry and schedule our first conversation.
+                  </p>
+                </div>
+              </div>
+              <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-5 h-5 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
+              <div className="flex-1 md:pl-8 hidden md:block"></div>
+            </div>
+
+            {/* Step 2: Discovery */}
+            <div id="timeline-step-2" className="relative flex items-center opacity-0 translate-y-10 transition-all duration-800 ease-out">
+              <div className="flex-1 md:pr-8 hidden md:block"></div>
+              <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-5 h-5 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
+              <div className="flex-1 md:pl-8">
+                <div className="bg-card p-6 rounded-lg shadow-sm border md:mr-auto md:max-w-md hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <span className="text-primary font-bold">2</span>
+                    </div>
+                    <h3 className="text-xl font-semibold">Discovery Call</h3>
+                  </div>
+                  <p className="text-muted-foreground">
+                    A detailed 30-60 minute conversation about your business goals, target audience, design preferences, functionality needs, and budget.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 3: Proposal */}
+            <div id="timeline-step-3" className="relative flex items-center opacity-0 translate-y-10 transition-all duration-800 ease-out">
+              <div className="flex-1 md:pr-8 md:text-right">
+                <div className="bg-card p-6 rounded-lg shadow-sm border md:ml-auto md:max-w-md hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-3 md:flex-row-reverse">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <span className="text-primary font-bold">3</span>
+                    </div>
+                    <h3 className="text-xl font-semibold">Custom Proposal</h3>
+                  </div>
+                  <p className="text-muted-foreground">
+                    We create a detailed proposal with project timeline, deliverables, pricing, and next steps tailored specifically to your requirements.
+                  </p>
+                </div>
+              </div>
+              <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-5 h-5 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
+              <div className="flex-1 md:pl-8 hidden md:block"></div>
+            </div>
+
+            {/* Step 4: Design Phase */}
+            <div id="timeline-step-4" className="relative flex items-center opacity-0 translate-y-10 transition-all duration-800 ease-out">
+              <div className="flex-1 md:pr-8 hidden md:block"></div>
+              <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-5 h-5 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
+              <div className="flex-1 md:pl-8">
+                <div className="bg-card p-6 rounded-lg shadow-sm border md:mr-auto md:max-w-md hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <span className="text-primary font-bold">4</span>
+                    </div>
+                    <h3 className="text-xl font-semibold">Design & Mockups</h3>
+                  </div>
+                  <p className="text-muted-foreground">
+                    We create wireframes and visual designs for your approval. You'll see exactly how your website will look before development begins.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 5: Development */}
+            <div id="timeline-step-5" className="relative flex items-center opacity-0 translate-y-10 transition-all duration-800 ease-out">
+              <div className="flex-1 md:pr-8 md:text-right">
+                <div className="bg-card p-6 rounded-lg shadow-sm border md:ml-auto md:max-w-md hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-3 md:flex-row-reverse">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <span className="text-primary font-bold">5</span>
+                    </div>
+                    <h3 className="text-xl font-semibold">Development</h3>
+                  </div>
+                  <p className="text-muted-foreground">
+                    Our team builds your website with regular progress updates. You'll receive preview links to see development in real-time.
+                  </p>
+                </div>
+              </div>
+              <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-5 h-5 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
+              <div className="flex-1 md:pl-8 hidden md:block"></div>
+            </div>
+
+            {/* Step 6: Launch & Support */}
+            <div id="timeline-step-6" className="relative flex items-center opacity-0 translate-y-10 transition-all duration-800 ease-out">
+              <div className="flex-1 md:pr-8 hidden md:block"></div>
+              <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-5 h-5 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
+              <div className="flex-1 md:pl-8">
+                <div className="bg-card p-6 rounded-lg shadow-sm border md:mr-auto md:max-w-md hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <span className="text-primary font-bold">6</span>
+                    </div>
+                    <h3 className="text-xl font-semibold">Launch & Support</h3>
+                  </div>
+                  <p className="text-muted-foreground">
+                    We deploy your website, provide training, and offer ongoing support to ensure your success. Your journey with us continues beyond launch.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </Section>
 

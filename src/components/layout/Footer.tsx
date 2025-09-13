@@ -37,9 +37,9 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-2 mb-4">
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">W</span>
+                <span className="text-primary-foreground font-bold text-sm">D</span>
               </div>
-              <span className="font-bold text-xl">WebCraft</span>
+              <span className="font-bold text-xl">Dequ</span>
             </Link>
             <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
               Creating beautiful, fast, and SEO-ready websites that convert visitors into customers. 
