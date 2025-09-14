@@ -30,35 +30,40 @@ export function ChatAnimationSection() {
 
   return (
     <Section className="relative bg-muted/30 py-24">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          Always Here to Help
-        </h2>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          From project start to launch and beyond, our dedicated support team ensures your success every step of the way.
-        </p>
-      </div>
-
-      <div className="max-w-md mx-auto">
-        {/* Chat Window */}
-        <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-border">
-          {/* Chat Header */}
-          <div className="bg-gradient-to-r from-primary to-primary/80 p-4 text-white">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
-                </svg>
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left side - Chat Animation */}
+          <div className="order-1 lg:order-1">
+            <div className="max-w-md">
+              {/* Container with same styling as hero image */}
+              <div className="relative w-full">
+                {/* Floating elements for depth - aligned to grid */}
+                <div className="absolute bg-primary/10 rounded-full blur-xl animate-pulse" style={{ top: '-25px', right: '-25px', width: '50px', height: '50px' }}></div>
+                <div className="absolute bg-blue-500/10 rounded-full blur-xl animate-pulse delay-1000" style={{ bottom: '-25px', left: '-25px', width: '75px', height: '75px' }}></div>
+                
+                {/* Main container - matching hero image style */}
+                <div className="relative bg-gradient-to-br from-primary/20 to-blue-500/20 backdrop-blur-sm border border-primary/20 shadow-2xl" style={{ borderRadius: '25px', padding: '25px' }}>
+                  
+                  {/* Chat Window */}
+                  <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-border transform hover:scale-105 transition-all duration-500 hover:shadow-3xl">
+              {/* Chat Header */}
+              <div className="bg-gradient-to-r from-primary to-primary/80 p-4 text-white">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">Dequ Customer Support</h3>
+                    <p className="text-xs text-white/80">Always online</p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h3 className="font-semibold">Dequ Customer Support</h3>
-                <p className="text-xs text-white/80">Always online</p>
-              </div>
-            </div>
-          </div>
 
           {/* Chat Messages Container */}
-          <div className="p-4 h-80 bg-gradient-to-b from-blue-50 to-white overflow-hidden relative flex flex-col justify-end">
+                        {/* Chat Messages Container */}
+              <div className="p-4 bg-gradient-to-b from-blue-50 to-white overflow-hidden relative flex flex-col justify-end" style={{ height: '300px' }}>
             
             <div className="flex flex-col gap-3">
               
@@ -152,6 +157,21 @@ export function ChatAnimationSection() {
               <div className="h-2 bg-gray-300 w-full"></div>
               <div className="h-2 bg-gray-300 w-3/4"></div>
             </div>
+          </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Right side - Text Content */}
+          <div className="order-2 lg:order-2 text-center lg:text-left">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Always Here to Help
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              From project start to launch and beyond, our dedicated support team ensures your success every step of the way.
+            </p>
           </div>
         </div>
       </div>
