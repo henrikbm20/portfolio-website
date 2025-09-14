@@ -220,12 +220,15 @@
   overflow: hidden;
 }
 
-/* Ensure messages start completely hidden and slide up from bottom */
-#message-1, #message-2, #message-3 {
+/* Chat messages animation */
+.chat-message-hidden {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  will-change: opacity, transform;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.chat-message-visible {
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
 }
 
 /* Real chat-like slide up animation */
