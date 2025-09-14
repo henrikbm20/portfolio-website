@@ -14,9 +14,9 @@ export function Home() {
     <div className="min-h-screen">
       <HeroSection />
       <BenefitsSection />
-      <ChatAnimationSection />
-      <TimelineSection />
       <ProjectsSection />
+      <TimelineSection />
+      <ChatAnimationSection />
       <TestimonialsSection />
       <CTASection />
     </div>

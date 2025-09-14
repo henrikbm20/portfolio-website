@@ -5,20 +5,41 @@ import { Section } from '@/components/ui/layout'
 export function ChatAnimationSection() {
   // Chat animation state
   const [visibleMessages, setVisibleMessages] = useState<number[]>([])
+  const [typingStates, setTypingStates] = useState<{[key: number]: boolean}>({})
 
   useEffect(() => {
     let timeouts: NodeJS.Timeout[] = []
     
     const runSequence = () => {
       setVisibleMessages([])
+      setTypingStates({})
       
-      timeouts.push(setTimeout(() => setVisibleMessages([1]), 1000))
-      timeouts.push(setTimeout(() => setVisibleMessages([1, 2]), 2400))
-      timeouts.push(setTimeout(() => setVisibleMessages([1, 2, 3]), 3800))
+      // Message 1 - Dequ typing then message
+      timeouts.push(setTimeout(() => setTypingStates({1: true}), 800))
+      timeouts.push(setTimeout(() => {
+        setTypingStates({})
+        setVisibleMessages([1])
+      }, 2000))
+      
+      // Message 2 - You typing then message  
+      timeouts.push(setTimeout(() => setTypingStates({2: true}), 3200))
+      timeouts.push(setTimeout(() => {
+        setTypingStates({})
+        setVisibleMessages([1, 2])
+      }, 4200))
+      
+      // Message 3 - Dequ typing then message
+      timeouts.push(setTimeout(() => setTypingStates({3: true}), 5400))
+      timeouts.push(setTimeout(() => {
+        setTypingStates({})
+        setVisibleMessages([1, 2, 3])
+      }, 6600))
+      
       timeouts.push(setTimeout(() => {
         setVisibleMessages([])
+        setTypingStates({})
         timeouts.push(setTimeout(runSequence, 1000))
-      }, 5200))
+      }, 8000))
     }
     
     runSequence()
@@ -67,10 +88,11 @@ export function ChatAnimationSection() {
             
             <div className="flex flex-col gap-3">
               
-              {/* Message 1 */}
+              {/* Message 1 - Dequ */}
               <AnimatePresence>
-                {visibleMessages.includes(1) && (
+                {(typingStates[1] || visibleMessages.includes(1)) && (
                   <motion.div
+                    key="message-1"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -100 }}
@@ -81,20 +103,29 @@ export function ChatAnimationSection() {
                     <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-primary font-bold text-sm">D</span>
                     </div>
-                    <div className="bg-white rounded-lg rounded-tl-none p-3 shadow-sm border max-w-xs">
-                      <div className="space-y-2">
-                        <div className="h-2 bg-gray-300 w-32"></div>
-                        <div className="h-2 bg-gray-300 w-20"></div>
+                    {typingStates[1] ? (
+                      <div className="flex items-start gap-1 pt-3">
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="bg-white rounded-lg rounded-tl-none p-3 shadow-sm border max-w-xs">
+                        <div className="space-y-2">
+                          <div className="h-2 bg-gray-300 w-32"></div>
+                          <div className="h-2 bg-gray-300 w-20"></div>
+                        </div>
+                      </div>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              {/* Message 2 */}
+              {/* Message 2 - You */}
               <AnimatePresence>
-                {visibleMessages.includes(2) && (
+                {(typingStates[2] || visibleMessages.includes(2)) && (
                   <motion.div
+                    key="message-2"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -100 }}
@@ -102,12 +133,20 @@ export function ChatAnimationSection() {
                     layout
                     className="flex items-start gap-3 justify-end"
                   >
-                    <div className="bg-primary text-white rounded-lg rounded-tr-none p-3 shadow-sm max-w-xs">
-                      <div className="space-y-2">
-                        <div className="h-2 bg-white/40 w-24"></div>
-                        <div className="h-2 bg-white/40 w-16"></div>
+                    {typingStates[2] ? (
+                      <div className="flex items-start gap-1 pt-3">
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="bg-primary text-white rounded-lg rounded-tr-none p-3 shadow-sm max-w-xs">
+                        <div className="space-y-2">
+                          <div className="h-2 bg-white/40 w-24"></div>
+                          <div className="h-2 bg-white/40 w-16"></div>
+                        </div>
+                      </div>
+                    )}
                     <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-white font-bold text-sm">You</span>
                     </div>
@@ -115,10 +154,11 @@ export function ChatAnimationSection() {
                 )}
               </AnimatePresence>
 
-              {/* Message 3 */}
+              {/* Message 3 - Dequ */}
               <AnimatePresence>
-                {visibleMessages.includes(3) && (
+                {(typingStates[3] || visibleMessages.includes(3)) && (
                   <motion.div
+                    key="message-3"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -100 }}
@@ -129,21 +169,29 @@ export function ChatAnimationSection() {
                     <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-primary font-bold text-sm">D</span>
                     </div>
-                    <div className="bg-white rounded-lg rounded-tl-none p-3 shadow-sm border max-w-xs">
-                      <p className="text-sm text-gray-800 mb-3">Here is your finished CIM, let us know if you want any changes ❤️</p>
-                      
-                      {/* File Download Component */}
-                      <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                        <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <p className="font-medium text-gray-900 text-sm">Pied_Piper_CIM.pdf</p>
+                    {typingStates[3] ? (
+                      <div className="flex items-start gap-1 pt-3">
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                      </div>
+                    ) : (
+                      <div className="bg-white rounded-lg rounded-tl-none p-3 shadow-sm border max-w-xs">
+                        <p className="text-sm text-gray-800 mb-3">Here is your finished CIM, let us know if you want any changes ❤️</p>
+                        
+                        {/* File Download Component */}
+                        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                          <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-medium text-gray-900 text-sm">Pied_Piper_CIM.pdf</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
