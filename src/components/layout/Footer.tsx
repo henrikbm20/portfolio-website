@@ -48,11 +48,11 @@ export function Footer() {
             <div className="space-y-2">
               <div className="flex items-center text-sm text-muted-foreground">
                 <Mail className="h-4 w-4 mr-2" />
-                hello@webcraft.dk
+                kontakt@ghmk.dk
               </div>
               <div className="flex items-center text-sm text-muted-foreground">
                 <Phone className="h-4 w-4 mr-2" />
-                +45 12 34 56 78
+                +45 31 63 36 43
               </div>
               <div className="flex items-center text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 mr-2" />
@@ -115,8 +115,8 @@ export function Footer() {
 
         {/* Bottom Section */}
         <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} WebCraft. All rights reserved.
+          <p className="text-sm text-muted-foreground"> 
+            © {new Date().getFullYear()} Dequ. All rights reserved.
           </p>
           
           {/* Social Links */}

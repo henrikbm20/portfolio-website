@@ -3,7 +3,7 @@ export function About() {
     <div className="min-h-screen pt-20">
       <div className="container py-12">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8">About WebCraft</h1>
+          <h1 className="text-4xl font-bold mb-8">About Dequ</h1>
           <p className="text-lg text-muted-foreground mb-8">
             We're passionate about creating websites that drive real business results.
           </p>
