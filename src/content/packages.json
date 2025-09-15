@@ -3,7 +3,7 @@
     "id": "onepager",
     "name": "One-pager",
     "description": "A single-page website, perfect for personal brands, portfolios, or simple blogs. Get your info and contact online fast.",
-    "basePrice": 7999,
+    "basePrice": 2500,
     "features": [
       "1 page (scrolling)",
       "Mobile-responsive design",
@@ -23,7 +23,7 @@
     "id": "smallsite",
     "name": "Small Website",
     "description": "A small, multi-page website for businesses or creators who need more than just a landing page. Includes more features and flexibility.",
-    "basePrice": 14999,
+    "basePrice": 4999,
     "features": [
       "Up to 6 pages",
       "Custom design",
@@ -45,7 +45,7 @@
     "id": "bigsite",
     "name": "Big Website",
     "description": "A large, feature-rich website for businesses that need advanced functionality, systems, or integrations.",
-    "basePrice": 29999,
+    "basePrice": 14999,
     "features": [
       "Up to 20 pages",
       "Advanced design & branding",

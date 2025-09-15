@@ -17,7 +17,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <div className="relative bg-gradient-to-br from-primary/5 via-background to-primary/10 overflow-hidden h-dvh h-screen flex items-center justify-center pt-24 sm:pt-20">
+  <div className="relative bg-gradient-to-br from-primary/5 via-background to-primary/10 overflow-hidden min-h-[80vh] flex items-center justify-center pt-20 sm:pt-16 pb-8">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-4 -right-4 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
@@ -26,12 +26,12 @@ export function HeroSection() {
       </div>
       
       {/* Main content container - perfectly centered and responsive */}
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-full flex items-center justify-center pb-20 sm:pb-20">
+  <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-full flex items-center justify-center pb-12 sm:pb-16">
         {/* Mobile Layout - Stack vertically */}
-        <div className="lg:hidden w-full flex flex-col items-center justify-center space-y-8 py-8">
+  <div className="lg:hidden w-full flex flex-col items-center justify-center space-y-6 py-6">
           {/* Mobile Text content */}
-          <div className="text-center flex flex-col justify-center space-y-6">
-            <h1 className="text-[clamp(2.5rem,8vw,6rem)] font-bold tracking-tight animate-fade-in delay-100 relative z-10 leading-tight">
+          <div className="text-center flex flex-col justify-center space-y-4">
+            <h1 className="text-[clamp(2rem,7vw,3.5rem)] font-bold tracking-tight animate-fade-in delay-100 relative z-10 leading-tight break-words">
               <div>Custom</div>
               <div>websites</div>
               <div>that</div>

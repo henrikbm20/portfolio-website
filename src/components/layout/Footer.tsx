@@ -39,7 +39,7 @@ export function Footer() {
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-sm">D</span>
               </div>
-              <span className="font-bold text-xl">Dequ</span>
+              <span className="font-bold text-xl">dequ.dk</span>
             </Link>
             <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
               Creating beautiful, fast, and SEO-ready websites that convert visitors into customers. 
