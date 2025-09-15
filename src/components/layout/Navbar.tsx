@@ -40,7 +40,7 @@ export function Navbar() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-sm">D</span>
             </div>
-            <span className="font-bold text-xl">Dequ</span>
+            <span className="font-bold text-xl">dequ.dk</span>
           </Link>
 
           {/* Desktop Navigation */}
