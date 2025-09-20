@@ -1,10 +1,8 @@
-﻿import React from 'react';
-import {
+﻿import {
   HeroSection,
   BenefitsSection,
   ChatAnimationSection,
   TimelineSection,
-  ProjectsSection,
   TestimonialsSection,
   CTASection
 } from '../components/home';
@@ -14,7 +12,6 @@ export function Home() {
     <div className="min-h-screen">
       <HeroSection />
       <BenefitsSection />
-      <ProjectsSection />
       <TimelineSection />
       <ChatAnimationSection />
       <TestimonialsSection />

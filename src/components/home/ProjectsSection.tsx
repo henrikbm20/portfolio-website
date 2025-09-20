@@ -12,29 +12,35 @@ const featuredProjects = projects.filter(p => p.featured).slice(0, 3)
 
 export function ProjectsSection() {
   return (
-    <Section className="bg-muted/30">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <Section className="bg-slate-800 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-10 right-20 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl animate-float-1"></div>
+        <div className="absolute bottom-20 left-10 w-40 h-40 bg-purple-500/5 rounded-full blur-2xl animate-float-2"></div>
+      </div>
+      
+      <div className="text-center mb-16 relative z-10">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
           Our Work
         </h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-lg text-slate-300 max-w-2xl mx-auto">
           See how we've helped businesses like yours grow with custom web solutions.
         </p>
       </div>
 
       {/* Live Hero Page Previews */}
-      <div className="mb-16">
-        <h3 className="text-2xl font-bold text-center mb-8">Live Hero Page Previews</h3>
+      <div className="mb-16 relative z-10">
+        <h3 className="text-2xl font-bold text-center mb-8 text-white">Live Hero Page Previews</h3>
         <HeroPageSlideshow />
       </div>
 
       {/* Portfolio Projects */}
-      <div>
-        <h3 className="text-2xl font-bold text-center mb-8">Portfolio Case Studies</h3>
+      <div className="relative z-10">
+        <h3 className="text-2xl font-bold text-center mb-8 text-white">Portfolio Case Studies</h3>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {featuredProjects.map((project) => (
-            <Card key={project.slug} className="group hover:shadow-lg transition-shadow">
-              <div className="aspect-video bg-muted rounded-t-2xl overflow-hidden flex items-center justify-center">
+            <Card key={project.slug} className="group hover:shadow-xl transition-all duration-300 bg-slate-900/50 border-slate-700 hover:border-blue-500/30 hover:scale-105">
+              <div className="aspect-video bg-slate-700 rounded-t-2xl overflow-hidden flex items-center justify-center">
                 <img 
                   src={project.thumbnail} 
                   alt={project.title}
@@ -44,28 +50,28 @@ export function ProjectsSection() {
                     target.style.display = 'none'
                     const parent = target.parentElement
                     if (parent) {
-                      parent.innerHTML = `<div class="w-full h-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center text-muted-foreground font-medium">${project.title}</div>`
+                      parent.innerHTML = `<div class="w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center text-slate-300 font-medium">${project.title}</div>`
                     }
                   }}
                 />
               </div>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">{project.industry}</span>
-                  <span className="text-sm text-muted-foreground">{project.year}</span>
+                  <span className="text-sm text-slate-400">{project.industry}</span>
+                  <span className="text-sm text-slate-400">{project.year}</span>
                 </div>
-                <CardTitle className="text-xl">{project.title}</CardTitle>
-                <CardDescription>{project.subtitle}</CardDescription>
+                <CardTitle className="text-xl text-white">{project.title}</CardTitle>
+                <CardDescription className="text-slate-300">{project.subtitle}</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">{project.summary}</p>
+                <p className="text-sm text-slate-400 mb-4">{project.summary}</p>
                 {project.impact.conversionLiftPct && (
-                  <div className="flex items-center text-sm text-green-600 mb-4">
+                  <div className="flex items-center text-sm text-green-400 mb-4">
                     <TrendingUp className="h-4 w-4 mr-1" />
                     +{project.impact.conversionLiftPct}% conversion increase
                   </div>
                 )}
-                <Button variant="outline" size="sm" asChild className="w-full">
+                <Button variant="outline" size="sm" asChild className="w-full border-slate-600 text-slate-300 hover:bg-blue-500/20 hover:border-blue-500 hover:text-white transition-all duration-300">
                   <Link to={`/work/${project.slug}`}>View Case Study</Link>
                 </Button>
               </CardContent>
@@ -73,8 +79,8 @@ export function ProjectsSection() {
           ))}
         </div>
       </div>
-      <div className="text-center mt-12">
-        <Button variant="outline" size="lg" asChild>
+      <div className="text-center mt-12 relative z-10">
+        <Button variant="outline" size="lg" asChild className="border-slate-600 text-slate-300 hover:bg-blue-500/20 hover:border-blue-500 hover:text-white transition-all duration-300">
           <Link to="/work">View All Projects</Link>
         </Button>
       </div>

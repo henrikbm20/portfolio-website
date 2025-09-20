@@ -1,13 +1,13 @@
 export function About() {
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-20 bg-slate-900">
       <div className="container py-12">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8">About Dequ</h1>
-          <p className="text-lg text-muted-foreground mb-8">
+          <h1 className="text-4xl font-bold mb-8 text-white">About Dequ</h1>
+          <p className="text-lg text-slate-300 mb-8">
             We're passionate about creating websites that drive real business results.
           </p>
-          <div className="prose prose-lg max-w-none">
+          <div className="prose prose-lg max-w-none text-slate-300">
             <p>
               Based in Copenhagen, Denmark, we specialize in creating beautiful, fast, and 
               SEO-optimized websites that convert visitors into customers. Our team combines 

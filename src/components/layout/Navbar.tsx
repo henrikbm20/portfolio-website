@@ -30,17 +30,17 @@ export function Navbar() {
     <nav className={cn(
       "fixed top-0 w-full z-50 transition-all duration-300",
       isScrolled 
-        ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" 
+        ? "bg-slate-900/95 backdrop-blur-md border-b border-slate-700 shadow-lg shadow-slate-900/20" 
         : "bg-transparent"
     )}>
       <div className="container">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">D</span>
+          <Link to="/" className="flex items-center space-x-2 group">
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
+              <span className="text-white font-bold text-sm">D</span>
             </div>
-            <span className="font-bold text-xl">dequ.dk</span>
+            <span className="font-bold text-xl text-white group-hover:text-blue-400 transition-colors">dequ.dk</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -50,10 +50,10 @@ export function Navbar() {
                 key={item.name}
                 to={item.href}
                 className={cn(
-                  "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                  "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105",
                   location.pathname === item.href
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                    ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                    : "text-slate-300 hover:text-white hover:bg-slate-800/50"
                 )}
               >
                 {item.name}
@@ -63,7 +63,7 @@ export function Navbar() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button asChild size="sm">
+            <Button asChild size="sm" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white border-0 shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105">
               <Link to="/quote">Get a Quote</Link>
             </Button>
           </div>
@@ -82,16 +82,16 @@ export function Navbar() {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-background border-t border-border">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-slate-900/95 backdrop-blur-md border-t border-slate-700 shadow-lg">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
                   className={cn(
-                    "block px-3 py-2 rounded-lg text-base font-medium transition-colors",
+                    "block px-3 py-2 rounded-lg text-base font-medium transition-all duration-300",
                     location.pathname === item.href
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                      ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                      : "text-slate-300 hover:text-white hover:bg-slate-800/50"
                   )}
                   onClick={() => setIsOpen(false)}
                 >
@@ -99,7 +99,7 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="pt-4 pb-2">
-                <Button asChild className="w-full">
+                <Button asChild className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white border-0 shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
                   <Link to="/quote" onClick={() => setIsOpen(false)}>
                     Get a Quote
                   </Link>
